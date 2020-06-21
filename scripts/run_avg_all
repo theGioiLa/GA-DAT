@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+script_folder=$(dirname $0)
+source config
+
+out_dir="${out_dir_prefix}/${target}"
+
+if [ ! -e $out_dir ]; then
+    mkdir -p $out_dir
+    echo "Created the dir $out_dir"
+    REPLY="y"
+else 
+    read -p "The dir $out_dir existed. Re-running (y/n) ?" 
+fi
+
+if [ $REPLY = "y" ]; then
+    for v in "${V[@]}"; do
+        for r in "${R[@]}"; do
+            ${script_folder}/run_parallel_seed $v $1 $r
+        done
+    done
+else
+    echo "DONE. Not re-running"
+fi
