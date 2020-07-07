@@ -1,26 +1,30 @@
 #!/usr/bin/env bash
 
-prog="final-mixed-rand-init-redundant-random"
+prog="final-mixed-rand-init-redundant"
 
 # prog="final-mixed-rand-init-sbx-2points-poly-2points-v2"
 version=1.0
 solver="$prog-$version.jar"
 
 cache_dir="./cache"
-prefix="lnoend"
-# prefix="lnoenu"
+prefix="lnoenu"
+# aTuan="aTuan/test"
+# prefix="m"
+# prefix="lunenu"
 ext_sample=".test"
 # cache_dir="./data_aTuan"
 # prefix="l"
 # ext_sample=""
 ext_output=".csv"
-out_dir_prefix="./mock/2-points-cr-mu/$prog-100000evals"
+# out_dir_prefix="./mock/aTuan/$prog-100000evals"
+# out_dir_prefix="./mock/quynq/$prog-100000evals"
+out_dir_prefix="./mock/final/$prog-100000evals"
+# out_dir_prefix="./mock/shuffle/$prog-100000evals"
 # out_dir_prefix="./mock/test/heur_balance_100000_evals"
 
-target="mecmin"
-# V=(100)
-V=(100 150 200 250 300 350 400 450 500)
+target="melmax"
 # V=(100 110 120 130 140 150 160 170 180 190)
+V=(100 150 200 250 300 350 400 450 500)
 R=(20)
 
 pc=0.7
@@ -29,8 +33,8 @@ pm=0.05
 MAX_SEED=30
 
 nproc=$(nproc --all) # number of processor
-# step=$((nproc/2))    # number of seed run parallel
+step=$((nproc/4))    # number of seed run parallel
 
 # step=$(echo "scale=0; $nproc/1.6" | bc)
 # step=$(echo "scale=0; $nproc/2.6" | bc)
-step=$(echo "scale=0; $nproc/1.3" | bc)  # 6-CPU
+# step=$(echo "scale=0; $nproc/1.3" | bc)  # 6-CPU

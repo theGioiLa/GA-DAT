@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Parameter {
     public final static int POPULATION_SIZE = 100;
-    public final static int PATIENCE_GENERATION = 200;
+    public final static int PATIENCE_GENERATION = 1000;
     public static int FES = 0; // current number of function evalutions
     public static int Max_FES = 100000; // Maximum number of evaluations to perform
 

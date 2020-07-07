@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>hust.mso.ga</groupId>
-  <artifactId>final-mixed-rand-init-redundant-random</artifactId>
+  <artifactId>final-mixed-rand-init-redundant</artifactId>
   <version>1.0</version>
 
-  <name>final-mixed-rand-init-redundant-random</name>
+  <name>final-mixed-rand-init-redundant</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 

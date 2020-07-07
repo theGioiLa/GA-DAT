@@ -2,11 +2,11 @@
 PROG_NAME = final-mixed-rand-init-redundant-random
 VERSION = 1.0
 PROG = $(PROG_NAME)-$(VERSION).jar
-SEED = 6
-SOURCE = lnoend_100_4_20
+SEED = 9
+SOURCE = lnoend_500_4_20
 
-PAPER = data_aTuan/paper
-# SOURCE = $(PAPER)/m190_4_20
+# PAPER = aTuan/test
+# SOURCE = $(PAPER)/l100_4_20
 pc = 0.7
 pm = 0.05
 
@@ -16,7 +16,7 @@ run:
 compile: 
 	mvn package
 
-INPUT = 500 4 20
+INPUT = 450 4 20
 avg:
 	./scripts/run_avg $(INPUT)
 

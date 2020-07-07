@@ -15,10 +15,10 @@ public class Mutation {
     protected static double sigma = 0.4 / (Parameter.UPPER_BOUND - Parameter.LOWER_BOUND); // [0.25, 0.5]/(U-L)
 
     public static ArrayList<Double> execute(ArrayList<Double> parent_genes) {
-        // return polynomial(parent_genes);
+        return polynomial(parent_genes);
         // return gaussian(parent_genes);
         // return normal(parent_genes);
-        return shuffle(parent_genes);
+        // return shuffle(parent_genes);
     }
 
     protected static ArrayList<Double> normal(ArrayList<Double> parent_genes) {

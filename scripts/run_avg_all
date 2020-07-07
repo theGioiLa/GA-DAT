@@ -14,8 +14,8 @@ else
 fi
 
 if [ $REPLY = "y" ]; then
-    for v in "${V[@]}"; do
-        for r in "${R[@]}"; do
+    for r in "${R[@]}"; do
+        for v in "${V[@]}"; do
             ${script_folder}/run_parallel_seed $v $1 $r
         done
     done

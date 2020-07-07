@@ -77,7 +77,7 @@ public class Task {
         for (Integer nodeId : G.adj.get(0)) {
             Node u = da_tree.get(nodeId);
             double energy_consumption = u.get_energy_consumption();
-            if (energy_consumption > max_energy_consumption)
+            if (energy_consumption > max_energy_consumption) 
                 max_energy_consumption = energy_consumption;
         }
 

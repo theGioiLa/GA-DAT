@@ -7,14 +7,15 @@ source ${script_folder}/naming
 out_dir="${out_dir_prefix}/${target}"
 out_file_path="${out_dir}/$(name_output $1 $2 $3)"
 
+# INPUT="${aTuan}/$(name_folder $1 $2 $3)"
 INPUT="$(name_folder $1 $2 $3)"
 echo "... Running $INPUT"
 
 header="Seed, Runtime(s), ${target}"
 
 if [[ -e $out_file_path ]]; then
-    REPLY="y"
     # read -p "The file $out_file_path was existed, re-running (y/n) ? "
+    echo "The file $out_file_path was existed, not re-running."
 else 
     echo "Writing to the file: $out_file_path";
     REPLY="y"
