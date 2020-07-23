@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: hust.mso.ga.NodeTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in hust.mso.ga.NodeTest
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in hust.mso.ga.NodeTest
+>>>>>>> 05856dcfb5048456e1babf4a965ad513e92d087c

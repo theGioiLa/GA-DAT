@@ -18,9 +18,13 @@ public class Mutation {
     protected static double sigma = 0.4 / (Parameter.UPPER_BOUND - Parameter.LOWER_BOUND); // [0.25, 0.5]/(U-L)
 
     public static ArrayList<Double> execute(ArrayList<Double> parent_genes) {
+<<<<<<< HEAD
         return local_search(parent_genes);
         // return polynomial(parent_genes);
         // return polynomial(parent_genes);
+=======
+        return polynomial(parent_genes);
+>>>>>>> 05856dcfb5048456e1babf4a965ad513e92d087c
         // return gaussian(parent_genes);
         // return normal(parent_genes);
         // return shuffle(parent_genes);
