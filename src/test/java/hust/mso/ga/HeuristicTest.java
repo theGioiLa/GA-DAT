@@ -10,11 +10,13 @@ import hust.mso.ga.Operator.Decode;
 import hust.mso.ga.Operator.Encode;
 
 public class HeuristicTest {
+    // private final String dir_test = "./cache/aTuan/test";
     private final String dir_test = "./cache";
     private final String EXT_SAMPLE = ".test";
 
     @Before
     public void init() {
+        // final String filename = "l100_4_10";
         final String filename = "lnoend_100_4_20";
         String path = String.format("%s/%s%s", dir_test, filename, EXT_SAMPLE);
 
@@ -78,6 +80,26 @@ public class HeuristicTest {
         ArrayList<Double> weight = Encode.from_spt_to_netkeys(spanning_tree);
         ArrayList<Node> da_tree = Decode.create_data_aggregation_tree(weight);
         System.out.println("left: " + Task.energy_consumption_min(da_tree) + " " + Task.min_energy_left_max(da_tree)
+                + " " + Task.max_energy_consumption_min(da_tree));
+    }
+
+    @Test
+    public void ec() {
+        int[] spanning_tree = Heuristic.ec();
+
+        ArrayList<Double> weight = Encode.from_spt_to_netkeys(spanning_tree);
+        ArrayList<Node> da_tree = Decode.create_data_aggregation_tree(weight);
+        System.out.println("EC: " + Task.energy_consumption_min(da_tree) + " " + Task.min_energy_left_max(da_tree)
+                + " " + Task.max_energy_consumption_min(da_tree));
+    }
+
+    @Test
+    public void spt() {
+        int[] spanning_tree = Heuristic.SPT();
+
+        ArrayList<Double> weight = Encode.from_spt_to_netkeys(spanning_tree);
+        ArrayList<Node> da_tree = Decode.create_data_aggregation_tree(weight);
+        System.out.println("SPT: " + Task.energy_consumption_min(da_tree) + " " + Task.min_energy_left_max(da_tree)
                 + " " + Task.max_energy_consumption_min(da_tree));
     }
 }

@@ -16,7 +16,7 @@
             "request": "launch",
             "mainClass": "hust.mso.ga.Main",
             "projectName": "mixed-rand-init-blx-poly",
-            "args": "lnoend_500_4_10 1"
+            "args": "aTuan/test/l190_4_20 9 0.7 0.05"
         }
     ]
 }

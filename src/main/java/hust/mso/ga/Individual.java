@@ -45,6 +45,20 @@ public class Individual implements Comparable<Individual> {
         fitness = val;
     }
 
+    static public boolean check_same(Individual ind, Individual cand) {
+        ArrayList<Node> spt_1 = Decode.create_spanning_tree(ind.chromo);
+        ArrayList<Node> spt_2 = Decode.create_spanning_tree(cand.chromo);
+
+        Node u, v;
+        for (int i = 0; i < spt_1.size(); i++) {
+            u = spt_1.get(i); v = spt_2.get(i);
+            // System.out.println(u.parent + " " + v.parent);
+            if (u.parent != v.parent) return false;
+        }
+
+        return true;
+    }
+
     @Override
     // Increase Order
     public int compareTo(Individual ind) {

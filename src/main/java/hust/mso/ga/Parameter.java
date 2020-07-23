@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Parameter {
+    public final static int MAX_GENERATION = 1000;
     public final static int POPULATION_SIZE = 100;
-    public final static int PATIENCE_GENERATION = 200;
+    public final static int PATIENCE_GENERATION = 1000;
     public static int FES = 0; // current number of function evalutions
-    public static int Max_FES = 100000; // Maximum number of evaluations to perform
+    public static int Max_FES = 300000; // Maximum number of evaluations to perform
 
     public static int GENE_SIZE;
 
@@ -42,7 +43,7 @@ public class Parameter {
 
     public static void save_generation(int gen) {
         String str = String.format("%d: %.0f", gen, best_ind.fitness);
-        // System.out.println(str);
+        System.out.println(str);
         gen_best.add(gen, best_ind.fitness);
     }
 }

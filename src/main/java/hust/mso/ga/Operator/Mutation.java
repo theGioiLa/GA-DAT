@@ -1,9 +1,12 @@
 package hust.mso.ga.Operator;
 
+import hust.mso.ga.Node;
 import hust.mso.ga.Parameter;
+import hust.mso.ga.Task;
 import hust.mso.ga.Util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,10 +18,12 @@ public class Mutation {
     protected static double sigma = 0.4 / (Parameter.UPPER_BOUND - Parameter.LOWER_BOUND); // [0.25, 0.5]/(U-L)
 
     public static ArrayList<Double> execute(ArrayList<Double> parent_genes) {
+        return local_search(parent_genes);
+        // return polynomial(parent_genes);
         // return polynomial(parent_genes);
         // return gaussian(parent_genes);
         // return normal(parent_genes);
-        return shuffle(parent_genes);
+        // return shuffle(parent_genes);
     }
 
     protected static ArrayList<Double> normal(ArrayList<Double> parent_genes) {
@@ -143,4 +148,32 @@ public class Mutation {
 
         return chromosome;
     }
+
+    protected static ArrayList<Double> local_search(ArrayList<Double> parent_genes) {
+        ArrayList<Node> spanning_tree = Decode.create_spanning_tree(parent_genes);
+
+        Node seed_node = spanning_tree.get(1 + Parameter.rand.nextInt(spanning_tree.size() - 1));
+
+        ArrayList<ArrayList<Integer>> children = new ArrayList<>();
+        for (int i = 0; i < spanning_tree.size(); i++) {
+            children.add(new ArrayList<Integer>());
+        }
+
+        int[] new_spt = new int[Task.G.V - 1];
+        Arrays.fill(new_spt, -1);
+        int i = 0;
+        for (Node u: spanning_tree) {
+            if (u.parent != -1) {
+                if (u.id != seed_node.id) {
+                    children.get(u.parent).add(u.id);
+                    new_spt[i++] = Task.G.label[u.parent][u.id];
+                }
+            }
+        }
+
+        ArrayList<Integer> cut_off = Initialization.bfs(seed_node, children); 
+        new_spt[i] = cut_off.get(Parameter.rand.nextInt(cut_off.size()));
+        return Encode.from_spt_to_netkeys(new_spt);
+    }
+
 }

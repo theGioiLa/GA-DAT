@@ -14,7 +14,7 @@ public class GA {
         gen++;
 
         int child_pop_size;
-        while (Parameter.FES < Parameter.Max_FES && nic < Parameter.PATIENCE_GENERATION) {
+        while (Parameter.FES < Parameter.Max_FES && gen < Parameter.MAX_GENERATION) {
             ArrayList<Individual> child = new ArrayList<>();
             child_pop_size = (Parameter.Max_FES - Parameter.FES) > Parameter.POPULATION_SIZE ? Parameter.POPULATION_SIZE
                     : (Parameter.Max_FES - Parameter.FES);
@@ -28,7 +28,7 @@ public class GA {
             pop.selection();
             Parameter.save_generation(gen);
 
-            check_local();
+            // check_local();
 
             gen++;
         }

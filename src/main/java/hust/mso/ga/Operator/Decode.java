@@ -18,6 +18,12 @@ import hust.mso.ga.Heuristic.Utils;
 public class Decode {
     // the decoding method based on Prim's AL
     public static ArrayList<Node> create_data_aggregation_tree(ArrayList<Double> weight) {
+        ArrayList<Node> da_tree = create_spanning_tree(weight);
+        calculate_send_and_recv_packets(da_tree);
+        return da_tree;
+    }
+
+    public static ArrayList<Node> create_spanning_tree(ArrayList<Double> weight) {
         Graph G = Task.G;
         ArrayList<Node> da_tree = new ArrayList<>(G.V);
 
@@ -37,7 +43,6 @@ public class Decode {
         Q.add(da_tree.get(0));
         in_queue[0] = true;
 
-        // build data aggregation tree
         while (!Q.isEmpty()) {
             Node u = Q.poll();
             visited[u.id] = true;
@@ -57,7 +62,6 @@ public class Decode {
             }
         }
 
-        calculate_send_and_recv_packets(da_tree);
         return da_tree;
     }
 

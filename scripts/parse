@@ -7,7 +7,7 @@ source ${script_folder}/naming
 # out_dir_prefix="./mock/2-points-cr-mu/$prog-100000evals"
 # prefix="lnoenu"
 # target="melmax"
-output_file="${out_dir_prefix}/${target}/avg_${prefix}_again${ext_output}"
+output_file="${out_dir_prefix}/${target}/avg_${prefix}${ext_output}"
 
 INF=$((2**20))
 TOTAL_SAMPLE=$((${#V[@]}*${#R[@]}))
@@ -54,7 +54,7 @@ parse_partner() {
             std=$(echo "scale=4; ${std}/${avg[1]}" | bc);
             std=$(echo "scale=1; ${std}*100" | bc);
 
-            log="$1 $2 $3, ${avg[0]} ${avg[1]} ${best} ${worst} ${std}"
+            log="$1 $2 $3, ${avg[0]}, ${avg[1]}, ${best}, ${worst}, ${std}"
             echo $log >> $output_file
             echo $log
 
@@ -67,8 +67,8 @@ echo "...Save to $output_file"
 
 echo $head > $output_file
 
+for r in "${R[@]}"; do
 for v in "${V[@]}"; do
-    for r in "${R[@]}"; do
         input_filename=$(name_output $v $1 $r) 
         echo "...Parsing $input_filename"
         parse_partner $v $1 $r

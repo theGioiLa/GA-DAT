@@ -17,7 +17,8 @@ public class Crossover {
 
 
     public static ArrayList<ArrayList<Double>> execute(ArrayList<Double> p1, ArrayList<Double> p2) {
-        return SBX(p1, p2);
+        return two_point(p1, p2);
+        // return SBX(p1, p2);
         // return uniform(p1, p2);
         // return BLX_alpha(p1, p2);
         // return PBX_alpha(p1, p2);
@@ -211,6 +212,32 @@ public class Crossover {
 
             chromosomes.get(0).add(c1);
             chromosomes.get(1).add(c2);
+        }
+
+        return chromosomes;
+    }
+
+    protected static ArrayList<ArrayList<Double>> two_point(ArrayList<Double> p1, ArrayList<Double> p2) {
+        ArrayList<ArrayList<Double>> chromosomes = new ArrayList<>(2);
+        chromosomes.add(new ArrayList<Double>(p1));
+        chromosomes.add(new ArrayList<Double>(p2));
+
+        int l = Parameter.rand.nextInt(Parameter.GENE_SIZE);
+        int r = Parameter.rand.nextInt(Parameter.GENE_SIZE);
+        while (r == l) r = Parameter.rand.nextInt(Parameter.GENE_SIZE);
+
+        if (r < l) {
+            r = r + l;
+            l = r - l;
+            r = r - l;
+        }
+
+        // for (int i = 0; i < Parameter.GENE_SIZE; i++) {
+        double tmp;
+        for (int i = l; i <= r; i++) {
+            tmp = chromosomes.get(0).get(i);
+            chromosomes.get(0).set(i, chromosomes.get(1).get(i));
+            chromosomes.get(1).set(i, tmp);
         }
 
         return chromosomes;
