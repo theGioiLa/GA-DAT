@@ -13,9 +13,9 @@ public class Individual implements Comparable<Individual> {
 
     public void calculate_fitness() {
         ArrayList<Node> da_tree = Decode.create_data_aggregation_tree(chromo);
-        // fitness = Task.energy_consumption_min(da_tree); // ecmin
+        fitness = Task.energy_consumption_min(da_tree); // ecmin
         // fitness = Task.max_energy_consumption_min(da_tree); // mecmin
-        fitness = Task.min_energy_left_max(da_tree); // melmax
+        // fitness = Task.min_energy_left_max(da_tree); // melmax
     }
 
     public void init_heuristic_random() {

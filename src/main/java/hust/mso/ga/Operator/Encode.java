@@ -9,7 +9,6 @@ import hust.mso.ga.Parameter;
 public class Encode {
     /*
      * @Param: spanning_tree: the tree 's edge list, taskId
-     * 
      * @Return: uss_gene
      */
     public static ArrayList<Double> from_spt_to_netkeys(int[] spanning_tree) {
@@ -65,15 +64,10 @@ public class Encode {
         double uL = Parameter.LOWER_BOUND;
         double uR = Parameter.UPPER_BOUND;
 
-        // if (Parameter.rand.nextDouble() < 0.6) {
-            genes = new ArrayList<>(size);
-            for (int i = 0; i < size; i++) {
-                genes.add(i, uL + Parameter.rand.nextDouble() * (uR - uL));
-            }
-        // } else {
-            // int[] spanning_tree = Heuristic.bfs_random();
-            // genes = from_spt_to_netkeys(spanning_tree);
-        // }
+        genes = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) {
+            genes.add(i, uL + Parameter.rand.nextDouble() * (uR - uL));
+        }
 
         return genes;
     }

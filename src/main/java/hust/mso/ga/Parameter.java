@@ -8,7 +8,7 @@ public class Parameter {
     public final static int POPULATION_SIZE = 100;
     public final static int PATIENCE_GENERATION = 1000;
     public static int FES = 0; // current number of function evalutions
-    public static int Max_FES = 300000; // Maximum number of evaluations to perform
+    public static int Max_FES = 100000; // Maximum number of evaluations to perform
 
     public static int GENE_SIZE;
 
@@ -24,26 +24,32 @@ public class Parameter {
     public static final int LOWER_BOUND = 0;
 
     public static double runtime = 0;
-    public static ArrayList<Double> gen_best; // for each generation, using this to save the best objectives
+    public static ArrayList<String> gen_best_log; // for each generation, using this to save the best objectives
 
     public static Individual best_ind;
     public static double best_fitness = INF;
 
-    public static void init(int seed, double pc, double pm) {
-        set_seed(seed);
+    public static void init(double pc, double pm) {
         Parameter.pc = pc;
         Parameter.pm = pm;
+
+        gen_best_log = new ArrayList<>(MAX_GENERATION);
+        for (int i = 0; i < MAX_GENERATION; i++) {
+            String str = String.format("%d, ", i + 1);
+            gen_best_log.add(str);
+        }
     }
 
     public static void set_seed(int _seed) {
-        gen_best = new ArrayList<>();
         seed = _seed;
         rand = new Random(seed);
+        best_fitness = INF;
+        FES = 0;
+        runtime = 0;
     }
 
     public static void save_generation(int gen) {
-        String str = String.format("%d: %.0f", gen, best_ind.fitness);
-        System.out.println(str);
-        gen_best.add(gen, best_ind.fitness);
+        String str = String.format("%.0f ", best_ind.fitness);
+        gen_best_log.set(gen, String.format("%s%s", gen_best_log.get(gen), str));
     }
 }

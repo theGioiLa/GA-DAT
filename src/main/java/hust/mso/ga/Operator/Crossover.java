@@ -10,15 +10,15 @@ public class Crossover {
     // ‘near-parent’ solutions (thereby allowing a focussed search)
     // and a small value of η c allows distant solutions to be selected
     // as offspring (thereby allowing to make diverse search)
-    protected static final int eta_c = 8; // distribution index (SBX)
+    protected static final int eta_c = 4; // distribution index (SBX)
     protected static final double EPS = 1.0e-14; // EPS defines the minimum difference allowed between real values 
 
     protected static final double alpha = 0.67; // BLX
 
 
     public static ArrayList<ArrayList<Double>> execute(ArrayList<Double> p1, ArrayList<Double> p2) {
-        return two_point(p1, p2);
-        // return SBX(p1, p2);
+        // return two_point(p1, p2);
+        return SBX(p1, p2);
         // return uniform(p1, p2);
         // return BLX_alpha(p1, p2);
         // return PBX_alpha(p1, p2);
@@ -47,7 +47,6 @@ public class Crossover {
             r = r - l;
         }
 
-        // for (int i = 0; i < Parameter.GENE_SIZE; i++) {
         for (int i = l; i <= r; i++) {
             valueX1 = p1.get(i);
             valueX2 = p2.get(i);

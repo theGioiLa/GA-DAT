@@ -2,6 +2,8 @@ package hust.mso.ga;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Graph {
     public int V, E; // number of vertices, number of edges
@@ -77,6 +79,35 @@ public class Graph {
         for (int i = 0; i < V; i++) {
             System.out.println(i + ": " + adj.get(i));
         }
+    }
+
+    // return the cut-off after removing an edge from tree
+    public static ArrayList<Integer> cutoff_from_tree(Node cut_node, ArrayList<ArrayList<Integer>> children) {
+        Graph G = Task.G;
+        boolean[] visited = new boolean[G.V];
+        Arrays.fill(visited, false);
+
+        ArrayList<Integer> cut_off = new ArrayList<>();
+        ArrayList<Integer> nodes_in_subtree = new ArrayList<>();
+        Queue<Integer> Q = new LinkedList<>();
+        Q.add(cut_node.id);
+
+        int u;
+        while (!Q.isEmpty()) {
+            u = Q.poll();
+            nodes_in_subtree.add(u);
+            visited[u] = true;
+            for (Integer v: children.get(u)) Q.add(v);
+        }
+
+        for (Integer v: nodes_in_subtree) {
+            for (Integer x: G.adj.get(v)) {
+                if (v == cut_node.id && x == cut_node.parent) continue;
+                if (!visited[x]) cut_off.add(G.label[v][x]);
+            }
+        }
+
+        return cut_off;
     }
 
     @Override

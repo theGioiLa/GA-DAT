@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>hust.mso.ga</groupId>
-  <artifactId>final-mixed-rand-init-redundant-random-local-search</artifactId>
+  <artifactId>run-final-local-search-init-redundant-random-sbx4-local-search-mut-pc0.7-pm0.2</artifactId>
   <version>1.0</version>
 
-  <name>final-mixed-rand-init-redundant-random-local-search</name>
+  <name>run-final-local-search-init-redundant-random-sbx4-local-search-mut-pc0.7-pm0.2</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 

@@ -37,23 +37,23 @@ public class GA {
     }
 
     public void check_local() {
-        double prev_best_fitness = Parameter.gen_best.get(gen - 1);
-        double curr_best_fitness = Parameter.gen_best.get(gen);
-        if (curr_best_fitness < prev_best_fitness) {
-            nic = 0;
-        } else {
-            nic++;
-        }
+        // double prev_best_fitness = Parameter.gen_best.get(gen - 1);
+        // double curr_best_fitness = Parameter.gen_best.get(gen);
+        // if (curr_best_fitness < prev_best_fitness) {
+            // nic = 0;
+        // } else {
+            // nic++;
+        // }
     }
 
     public ArrayList<Individual> crossover_mutation() {
         ArrayList<Individual> offsprings = new ArrayList<>();
         ArrayList<Individual> parents;
-        if (Parameter.rand.nextDouble() < 0.1) {
+        // if (Parameter.rand.nextDouble() < 0.1) {
             parents = Selection.tourament(pop.members);
-        } else {
-            parents = Selection.random(pop.members);
-        }
+        // } else {
+            // parents = Selection.random(pop.members);
+        // }
 
         Individual parent1 = parents.get(0);
         Individual parent2 = parents.get(1);
@@ -77,9 +77,9 @@ public class GA {
         ArrayList<Individual> offsprings = new ArrayList<>();
         ArrayList<Individual> parents;
         // if (Parameter.rand.nextDouble() < 0.3) {
-            parents = Selection.tourament(pop.members);
+            // parents = Selection.tourament(pop.members);
         // } else {
-            // parents = Selection.random(pop.members);
+            parents = Selection.random(pop.members);
         // }
 
         Individual parent1 = parents.get(0);

@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: hust.mso.ga.HeuristicTest
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.079 s - in hust.mso.ga.HeuristicTest
-=======
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.124 s - in hust.mso.ga.HeuristicTest
->>>>>>> 05856dcfb5048456e1babf4a965ad513e92d087c
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.086 s - in hust.mso.ga.HeuristicTest

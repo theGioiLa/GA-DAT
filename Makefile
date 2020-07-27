@@ -1,17 +1,17 @@
 # run a single seed with a specific input 
-PROG_NAME = final-mixed-rand-init-redundant-random-local-search
+PROG_NAME = run-final-local-search-init-redundant-random-sbx4-local-search-mut-pc0.7-pm0.2
 VERSION = 1.0
 PROG = $(PROG_NAME)-$(VERSION).jar
-SEED = 1
-# SOURCE = lnoend_100_4_20
+SEED = 15 
+SOURCE = lnoenu_400_4_10
 
-PAPER = aTuan/test
-SOURCE = $(PAPER)/l190_4_20
+BASE_PATH = ./cache
+# SOURCE = l190_4_20
 pc = 0.7
 pm = 0.2
 
 run:
-	java -cp target/$(PROG) hust.mso.ga.Main $(SOURCE) $(SEED) $(pc) $(pm)
+	java -cp target/$(PROG) hust.mso.ga.Main $(SOURCE) $(pc) $(pm) $(BASE_PATH) $(SEED)
 
 compile: 
 	mvn package
@@ -32,6 +32,9 @@ parse:
 q = 4
 avg_all:
 	./scripts/run_avg_all $(q)
+
+avg_quynq:
+	./scripts/run-quynq $(q)
 
 heur:
 	java -cp target/$(PROG) hust.mso.ga.Run_Heur $(SOURCE) $(SEED) $(pc) $(pm)

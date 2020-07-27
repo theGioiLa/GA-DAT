@@ -7,7 +7,7 @@ source ${script_folder}/naming
 # out_dir_prefix="./mock/2-points-cr-mu/$prog-100000evals"
 # prefix="lnoenu"
 # target="melmax"
-output_file="${out_dir_prefix}/${target}/avg_${prefix}${ext_output}"
+output_file="${out_dir_prefix}/${target}/result/avg_${prefix}${ext_output}"
 
 INF=$((2**20))
 TOTAL_SAMPLE=$((${#V[@]}*${#R[@]}))
@@ -18,7 +18,7 @@ head="Input, avgRuntime, ${target}, best, worst, std"
 parse_partner() {
     local log=""
     local input_filename=$(name_output $1 $2 $3) 
-    local input=${out_dir_prefix}/$target/$input_filename
+    local input=${out_dir_prefix}/$target/result/$input_filename
 
     local avg=(0 0) # runtime, target
     local std=0
@@ -51,8 +51,8 @@ parse_partner() {
 
             avg[0]=$(echo "scale=2; ${avg[0]}/${MAX_SEED}" | bc)
             avg[1]=$(echo "scale=2; ${avg[1]}/${MAX_SEED}" | bc)
-            std=$(echo "scale=4; ${std}/${avg[1]}" | bc);
-            std=$(echo "scale=1; ${std}*100" | bc);
+            # std=$(echo "scale=4; ${std}/${avg[1]}" | bc);
+            # std=$(echo "scale=1; ${std}*100" | bc);
 
             log="$1 $2 $3, ${avg[0]}, ${avg[1]}, ${best}, ${worst}, ${std}"
             echo $log >> $output_file

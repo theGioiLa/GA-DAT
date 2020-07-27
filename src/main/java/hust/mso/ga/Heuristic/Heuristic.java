@@ -386,8 +386,8 @@ public class Heuristic {
                     }
                 }
 
-                parent[u] = parent_u;
-                // parent[u] = parents_with_same_redundant.get(Parameter.rand.nextInt(parents_with_same_redundant.size()));
+                // parent[u] = parent_u;
+                parent[u] = parents_with_same_redundant.get(Parameter.rand.nextInt(parents_with_same_redundant.size()));
                 curr_p = parent[u];
                 while (curr_p != 0) {
                     aggr[curr_p] += aggr[u];

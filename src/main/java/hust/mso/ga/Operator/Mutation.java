@@ -1,5 +1,6 @@
 package hust.mso.ga.Operator;
 
+import hust.mso.ga.Graph;
 import hust.mso.ga.Node;
 import hust.mso.ga.Parameter;
 import hust.mso.ga.Task;
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Mutation {
     // polynomial params
@@ -18,13 +21,9 @@ public class Mutation {
     protected static double sigma = 0.4 / (Parameter.UPPER_BOUND - Parameter.LOWER_BOUND); // [0.25, 0.5]/(U-L)
 
     public static ArrayList<Double> execute(ArrayList<Double> parent_genes) {
-<<<<<<< HEAD
         return local_search(parent_genes);
         // return polynomial(parent_genes);
         // return polynomial(parent_genes);
-=======
-        return polynomial(parent_genes);
->>>>>>> 05856dcfb5048456e1babf4a965ad513e92d087c
         // return gaussian(parent_genes);
         // return normal(parent_genes);
         // return shuffle(parent_genes);
@@ -156,26 +155,58 @@ public class Mutation {
     protected static ArrayList<Double> local_search(ArrayList<Double> parent_genes) {
         ArrayList<Node> spanning_tree = Decode.create_spanning_tree(parent_genes);
 
-        Node seed_node = spanning_tree.get(1 + Parameter.rand.nextInt(spanning_tree.size() - 1));
-
         ArrayList<ArrayList<Integer>> children = new ArrayList<>();
         for (int i = 0; i < spanning_tree.size(); i++) {
             children.add(new ArrayList<Integer>());
         }
 
-        int[] new_spt = new int[Task.G.V - 1];
-        Arrays.fill(new_spt, -1);
-        int i = 0;
         for (Node u: spanning_tree) {
-            if (u.parent != -1) {
-                if (u.id != seed_node.id) {
-                    children.get(u.parent).add(u.id);
-                    new_spt[i++] = Task.G.label[u.parent][u.id];
+            if (u.parent != -1) children.get(u.parent).add(u.id);
+        }
+
+        int i = 0;
+        int[] new_spt = new int[Task.G.V - 1];;
+        Node cut_node;
+        Graph G = Task.G;
+        boolean[] visited = new boolean[G.V];
+
+        ArrayList<Integer> cut_off = new ArrayList<>();
+        ArrayList<Integer> nodes_in_subtree = new ArrayList<>();
+        Queue<Integer> Q = new LinkedList<>();
+        while (cut_off.isEmpty()) {
+            // Get a node for disconnecting from the tree, this node must be an internal node 
+            cut_node = spanning_tree.get(1 + Parameter.rand.nextInt(spanning_tree.size() - 1));
+
+            i = 0;
+            for (Node u: spanning_tree) {
+                if (u.parent != -1 && u.id != cut_node.id) new_spt[i++] = G.label[u.parent][u.id];
+            }
+
+            // cut_off = Graph.cutoff_from_tree(cut_node, children);
+            nodes_in_subtree.clear();
+            Q.clear();
+
+            Arrays.fill(visited, false);
+            nodes_in_subtree.clear();
+
+            Q.add(cut_node.id);
+
+            int u;
+            while (!Q.isEmpty()) {
+                u = Q.poll();
+                nodes_in_subtree.add(u);
+                visited[u] = true;
+                for (Integer v: children.get(u)) Q.add(v);
+            }
+
+            for (Integer v: nodes_in_subtree) {
+                for (Integer x: G.adj.get(v)) {
+                    if (v == cut_node.id && x == cut_node.parent) continue;
+                    if (!visited[x]) cut_off.add(G.label[v][x]);
                 }
             }
         }
 
-        ArrayList<Integer> cut_off = Initialization.bfs(seed_node, children); 
         new_spt[i] = cut_off.get(Parameter.rand.nextInt(cut_off.size()));
         return Encode.from_spt_to_netkeys(new_spt);
     }

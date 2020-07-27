@@ -1,7 +1,0 @@
-Có 2 loại dữ liệu:
-\type 1: của mình (sử dụng với bộ lnoenu và luenu) # cùng năng lượng, khác phân bố, r = {10, 15, 20}, q = 4 --> sử dụng cho 3 bài toán: mecat, mecmin, melmax.
-\type 2: aTuan (sử dụng với bộ l, m) # r = {10, 15, 20}, q = 4 --> sử dụng cho bài toán mecat 
-
-2 critiea:
-+ GA vs SPT: trên cả 3 bài toán, sử dụng data \type 1
-+ GA vs MFEA: trên bài toán mecat, sử dụng data \type 2

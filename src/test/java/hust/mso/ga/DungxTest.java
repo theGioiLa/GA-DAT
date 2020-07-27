@@ -21,11 +21,12 @@ public class DungxTest {
     protected int best_node;
     protected String task = "mecmin";
     ArrayList<Node> da_tree;
+    protected String BASE_PATH = "./cache";
 
     @Before
     public void init() {
         String filename = "lnoend_500_4_10";
-        String sources = String.format("%s/%s.test", Main.BASE_PATH, filename);
+        String sources = String.format("%s/%s.test", BASE_PATH, filename);
         Task.init(sources);
 
         String path = String.format("./a.dungz/large/%s/%s/best.log", task, filename);
