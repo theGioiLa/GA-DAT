@@ -42,15 +42,15 @@ public class Encode {
     public static ArrayList<Double> heuristic_rand() {
         ArrayList<Double> chromo;
 
-        double delta = 1.0 / 4;
-        double u = Parameter.rand.nextDouble();
+        // double delta = 1.0 / 4;
+        // double u = Parameter.rand.nextDouble();
         int[] spanning_tree;
 
-        if (u < delta) spanning_tree = Heuristic.balance_load();
+        // if (u < delta) spanning_tree = Heuristic.balance_load();
         // else if (u < 2*delta) spanning_tree = Heuristic.balance_energy_left();
-         else if (u < 3*delta) spanning_tree = Heuristic.redundant_packet_min();
-         else spanning_tree = Heuristic.random();
-         
+         // else if (u < 3*delta) spanning_tree = Heuristic.redundant_packet_min();
+         // else spanning_tree = Heuristic.random();
+         spanning_tree = Heuristic.redundant_packet_min();
 
         chromo = from_spt_to_netkeys(spanning_tree);
         return chromo;

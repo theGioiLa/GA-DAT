@@ -10,35 +10,34 @@ public class Main {
     static final String EXT_SAMPLE = ".test";
     static final String EXT_OUT = ".csv";
     static final String EXT_LOG = ".txt";
-    static final String target = "ecmin";
+    static final String target = "mecat";
     static final int MAX_SEED = 30;
 
-    static final String prog = "final-local-search-init-redundant-random-sbx4-local-search-mut";
+    static final String prog = "random-init-local-search-mut";
 
     public static void main(String[] args) {
         on_start_up(args);
 
-        // String outdir = String.format("%s/quynq/%s-100000evals-1000Gen/%s", MOCK_PATH, prog, target);
-        // String outdir_rs = String.format("%s/result", outdir);
-        // String outdir_log = String.format("%s/log", outdir);
+        String outdir = String.format("%s/quynq/%s-100000evals-1000Gen/%s", MOCK_PATH, prog, target);
+        String outdir_rs = String.format("%s/result", outdir);
+        String outdir_log = String.format("%s/log", outdir);
 
-        // String filename_rs = String.format("%s%s", args[0], EXT_OUT);
-        // String filename_log = String.format("%s%s", args[0], EXT_LOG);
+        String filename_rs = String.format("%s%s", args[0], EXT_OUT);
+        String filename_log = String.format("%s%s", args[0], EXT_LOG);
 
-        // File f_rs = new File(outdir_rs);
-        // File f_log = new File(outdir_log);
+        File f_rs = new File(outdir_rs);
+        File f_log = new File(outdir_log);
 
-        // f_rs.mkdirs(); f_log.mkdirs();
+        f_rs.mkdirs(); f_log.mkdirs();
 
-        // String header = "seed, runtime(s), ecmin\n";
+        String header = "seed, runtime(s), ecmin\n";
 
-        // try {
-            // FileWriter writer_rs = new FileWriter(String.format("%s/%s", outdir_rs, filename_rs));
-            // writer_rs.write(header);
+        try {
+            FileWriter writer_rs = new FileWriter(String.format("%s/%s", outdir_rs, filename_rs));
+            writer_rs.write(header);
 
-            // for (int seed = 22; seed < 23; seed++) {
-            // for (int seed = 1; seed < MAX_SEED + 1; seed++) {
-                // Parameter.set_seed(seed);
+            for (int seed = 1; seed < MAX_SEED + 1; seed++) {
+                Parameter.set_seed(seed);
                 GA solver = new GA();
                 double start = System.currentTimeMillis();
                 Individual best_solution = solver.run();
@@ -48,21 +47,20 @@ public class Main {
                 String format = "%.0f\n";
                 info += String.format(format, Math.abs(best_solution.fitness));
 
-                System.out.print(info);
-                // writer_rs.write(info);
-            // }
+                writer_rs.write(info);
+            }
 
 
-            // FileWriter writer_log = new FileWriter(String.format("%s/%s", outdir_log, filename_log));
-            // for (String gen: Parameter.gen_best_log) {
-                // writer_log.write(gen + "\n");
-            // }
+            FileWriter writer_log = new FileWriter(String.format("%s/%s", outdir_log, filename_log));
+            for (String gen: Parameter.gen_best_log) {
+                writer_log.write(gen + "\n");
+            }
 
-            // writer_rs.close();
-            // writer_log.close();
-        // } catch (IOException e) {
-            // e.printStackTrace();
-        // }
+            writer_rs.close();
+            writer_log.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     static void on_start_up(String[] args) {
@@ -77,13 +75,13 @@ public class Main {
 
         if (args.length >= 4) BASE_PATH = args[3];
 
-        int seed = Integer.parseInt(args[4]);
+        // int seed = Integer.parseInt(args[4]);
 
         String path = String.format("%s/%s%s", BASE_PATH, args[0], EXT_SAMPLE);
 
         Task.init(path);
         // Parameter.init(seed, pc, pm);
         Parameter.init(pc, pm);
-        Parameter.set_seed(seed);
+        // Parameter.set_seed(seed);
     }
 }

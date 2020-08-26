@@ -187,8 +187,6 @@ public class Mutation {
             Q.clear();
 
             Arrays.fill(visited, false);
-            nodes_in_subtree.clear();
-
             Q.add(cut_node.id);
 
             int u;

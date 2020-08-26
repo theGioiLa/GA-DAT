@@ -1,12 +1,12 @@
 # run a single seed with a specific input 
-PROG_NAME = run-final-local-search-init-redundant-random-sbx4-local-search-mut-pc0.7-pm0.2
+PROG_NAME = random-init-pc0.7-pm0.2
 VERSION = 1.0
 PROG = $(PROG_NAME)-$(VERSION).jar
 SEED = 15 
-SOURCE = lnoenu_400_4_10
+SOURCE = lnoenu_100_4_10
 
-BASE_PATH = ./cache
-# SOURCE = l190_4_20
+BASE_PATH = ./cache/aTuan/test
+SOURCE = m160_4_20
 pc = 0.7
 pm = 0.2
 

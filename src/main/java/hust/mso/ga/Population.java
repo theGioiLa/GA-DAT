@@ -16,10 +16,10 @@ public class Population {
     protected ArrayList<Individual> members;
 
     public void init(int size) {
-        // members = Initialization.random(size);
+        members = Initialization.random(size);
         // members = Initialization.heuristic_rand(size);
         // members = Initialization.mixed_rand(size);
-        members = Initialization.random_with_local_search(size);
+        // members = Initialization.random_with_local_search(size);
     }
 
     public void selection() {
