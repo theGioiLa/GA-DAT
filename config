@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-prog="random-init-pc0.7-pm0.2"
+prog="random-init-local-search-mut"
 # prog="final-local-search-init-redundant-random-sbx4-local-search-mut-pc0.7-pm0.2"
 version=1.0
 solver="$prog-$version.jar"
@@ -19,15 +19,15 @@ ext_output=".csv"
 pc=0.7
 pm=0.2
 
-out_dir_prefix="./mock/quynq/$prog-100000evals-1000Gen-$pc-$pm"
+out_dir_prefix="./mock/quynq/$prog-100000evals-1000Gen"
 # out_dir_prefix="./mock/quynq/$prog-100000evals"
 # out_dir_prefix="./mock/final/$prog-100000evals"
 # out_dir_prefix="./mock/shuffle/$prog-100000evals"
 # out_dir_prefix="./mock/test/heur_balance_100000_evals"
 
-target="ecmin"
-V=(170 180 190)
-# V=(100 110 120 130 140 150 160 170 180 190)
+target="mecat"
+# V=(170 180 190)
+V=(100 110 120 130 140 150 160 170 180 190)
 # V=(100 150 200 250 300 350 400 450 500)
 R=(10 15 20)
 
